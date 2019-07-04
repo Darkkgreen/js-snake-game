@@ -22,6 +22,17 @@ function Snake() {
 		this.position.y += this.ori.y * gridSize;
 	}
 
+	this.occupies = function(vector) {
+		spaces = this.tail.concat(this.position);
+		for (var i = 0; i < spaces-1; i++) {
+			if (spaces[i].x === vector.x && spaces[i].y === vector.y) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	this.eatFood = function() {
 		if (dist(this.position.x, this.position.y, food.x, food.y) === 0) {
 			this.size++;
@@ -57,14 +68,14 @@ function Snake() {
 
 	this.up = function() {
 		if (this.ori.y == 0){
-			this.ori.x = 0
+			this.ori.x = 0;
 			this.ori.y = -1;
 		}
 	}
 
 	this.down = function() {
 		if (this.ori.y == 0) {
-			this.ori.x = 0
+			this.ori.x = 0;
 			this.ori.y = 1;
 		}
 	}
@@ -72,14 +83,14 @@ function Snake() {
 	this.left = function() {
 		if (this.ori.x == 0) {
 			this.ori.x = -1;
-			this.ori.y = 0
+			this.ori.y = 0;
 		}
 	}
 
 	this.right = function() {
 		if (this.ori.x == 0) {
 			this.ori.x = 1;
-			this.ori.y = 0
+			this.ori.y = 0;
 		}
 	}
 }

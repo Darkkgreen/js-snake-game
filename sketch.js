@@ -37,7 +37,13 @@ function keyPressed() {
 }
 
 function generateFood() {
-	food = createVector(floor(random(0, height/gridSize))*gridSize, floor(random(0, width/gridSize))*gridSize);
+	slot = createVector(floor(random(0, height/gridSize))*gridSize, floor(random(0, width/gridSize))*gridSize)
+
+	if (snake.occupies(slot)) {
+		generateFood();
+	} else {
+		food = slot;
+	}
 }
 
 function drawFood() {
